@@ -1,0 +1,18 @@
+root_template: dockerfiletemplate.j2
+generate_output_path: false
+
+globals:
+  containerversiondotnetsdk: 8.0.404-alpine3.20
+  containerversionaspnet: 8.0.11-alpine3.20
+  sourceregistry: mcr.microsoft.com
+  user: app
+
+targets:
+  serviceone:
+    extrasteps:
+      - "RUN rm -f src/Package.One.Api/appsettings*.json"
+    sourcepackages:
+      - "Package.One.Api"
+      - "Package.One.Common"
+      - "Package.Two.Dummy"
+    targetfilepath: ".test/Package.One.Api/Dockerfile"
