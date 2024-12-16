@@ -47,16 +47,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='dockertempl')
     parser.add_argument("-t", '--templ', type=str, help='template yaml file', default="dockerfiles.yaml")
     args = parser.parse_args()
-    """
-    infile = ""
-    if len(sys.argv) < 2:
-        if os.path.exists("dockerfiles.yaml"):
-            print("using default file dockerfiles.yaml")
-            infile = "dockerfiles.yaml"
-        else:
-            print("give me one argument with a yaml file, please")
-            sys.exit(1)
-    else:
-        infile = sys.argv[1]
-    """
     main(args.templ)
