@@ -1,5 +1,5 @@
-root_template: dockerfiletemplate.j2
-generate_output_path: false
+root_template: dockerfiletemplate.j2 # relative path to the template file
+generate_output_path: true
 
 globals:
   containerversiondotnetsdk: 8.0.404-alpine3.20
@@ -16,3 +16,11 @@ targets:
       - "Package.One.Common"
       - "Package.Two.Dummy"
     targetfilepath: ".test/Package.One.Api/Dockerfile"
+  servicetwo:
+    extrasteps:
+      - "RUN rm -f src/Package.One.Api/appsettings*.json"
+    sourcepackages:
+      - "Package.Two.Api"
+      - "Package.One.Common"
+      - "Package.Two.Dummy"
+    targetfilepath: ".test/Package.Two.Api/Dockerfile"

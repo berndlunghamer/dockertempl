@@ -7,11 +7,15 @@ import os
 
 
 def main(settings_yml_path :str):
+    if not os.path.exists(settings_yml_path):
+        print(f"File {settings_yml_path} does not exist")
+        return
+
     with open(settings_yml_path, 'r') as fr:
         settings = yaml.safe_load(fr)
 
-    # get the directory of the root template
-    templates_dir = os.path.dirname(settings['root_template'])
+    # get the directory of settings_yml_path
+    templates_dir = os.path.dirname(settings_yml_path)
 
     # Create the Jinja2 environment
     env = Environment(loader=FileSystemLoader(templates_dir), autoescape=True)
@@ -41,7 +45,7 @@ def main(settings_yml_path :str):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='dockertempl')
-    parser.add_argument("-t", '--templ', type=str, help='template yaml file')
+    parser.add_argument("-t", '--templ', type=str, help='template yaml file', default="dockerfiles.yaml")
     args = parser.parse_args()
     """
     infile = ""
