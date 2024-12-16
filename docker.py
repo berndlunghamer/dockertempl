@@ -44,7 +44,7 @@ def main(settings_yml_path :str):
             fw.write(rendered_template)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='dockertempl')
+    parser = argparse.ArgumentParser(prog="dockertemp",description='generate Dockerfiles via jinja2 templates')
     parser.add_argument("-t", '--templ', type=str, help='template yaml file', default="dockerfiles.yaml")
     args = parser.parse_args()
     main(args.templ)
